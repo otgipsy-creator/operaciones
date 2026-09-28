@@ -1,51 +1,224 @@
-!DOCTYPE html
-html lang=es
-head
-meta charset=UTF-8
-!-- Sin viewport-fit=cover a propósito así iOS deja la app dentro del área segura
-     (debajo de la barra de estado y arriba del indicador de inicio). --
-meta name=viewport content=width=device-width, initial-scale=1
-titleComandastitle
+<!DOCTYPE html>
+<html lang="es">
 
-!-- ÍCONO Y MODO APP estas etiquetas SÍ las lee iOS porque esta es la página
-     de más arriba (la que se guarda al Agregar a pantalla de inicio). --
-link rel=apple-touch-icon sizes=180x180 href=ChatGPT Image 28 sept 2026, 12_29_54 p.m..png
-link rel=icon type=imagepng sizes=512x512 href=ChatGPT Image 28 sept 2026, 12_29_54 p.m..png
-meta name=apple-mobile-web-app-capable content=yes
-meta name=mobile-web-app-capable content=yes
-meta name=apple-mobile-web-app-title content=Comandas
-meta name=apple-mobile-web-app-status-bar-style content=black
-meta name=theme-color content=#0f3d28
+<head>
 
-style
-  html, body { margin0; padding0; height100%; background#0f3d28; }
-  iframe { positionfixed; top0; left0; width100%; height100%; border0; background#f6f3ee; }
-  #aviso { displaynone; font-family-apple-system, sans-serif; color#fff; padding28px; line-height1.5; }
-style
-head
-body
+  <meta charset="UTF-8">
 
-div id=avisodiv
-iframe id=app title=Comandas allow=fullscreeniframe
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
 
-script
- ─────────────────────────────────────────────────────────────
-  PEGAR ACÁ la URL de tu web app de Apps Script (la que termina en exec)
- ─────────────────────────────────────────────────────────────
-var URL_APP = https://script.google.com/macros/s/AKfycbylguEJ-dk1eO8J9FLl67YHmdDQmvJDgB6qsjUzcfKAGNv6lHHXUSTuOha0_Unf9ySeZQ/exec?mobile=1;
+  <title>Centro de Operaciones</title>
 
-(function () {
-  var frame = document.getElementById(app);
-  var aviso = document.getElementById(aviso);
-  if (!^httpsscript.google.com.+exec.test(URL_APP)) {
-    frame.style.display = none;
-    aviso.style.display = block;
-    aviso.innerHTML = bFalta configurar la URL.bbrAbrí codeindex.htmlcode, pegá la URL  +
-                      de tu web app en codeURL_APPcode y volvé a subir el archivo.;
-    return;
-  }
-  frame.src = [&]app=.test(URL_APP)  URL_APP  URL_APP + (URL_APP.indexOf() = 0  &  ) + app=celular;
-})();
-script
-body
-html
+
+  <!-- =========================================================
+       ICONO DE LA APLICACIÓN
+       ========================================================= -->
+
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="ChatGPT Image 28 sept 2026, 12_29_54 p.m..png">
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="512x512"
+    href="ChatGPT Image 28 sept 2026, 12_29_54 p.m..png">
+
+
+  <!-- =========================================================
+       MODO APLICACIÓN EN iPHONE
+       ========================================================= -->
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes">
+
+  <meta
+    name="mobile-web-app-capable"
+    content="yes">
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="Centro de Operaciones">
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black">
+
+  <meta
+    name="theme-color"
+    content="#0f3d28">
+
+
+  <!-- =========================================================
+       ESTILOS DEL CONTENEDOR
+       ========================================================= -->
+
+  <style>
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: #0f3d28;
+
+      overflow: hidden;
+    }
+
+
+    /*
+      El iframe ocupa toda la pantalla.
+    */
+
+    iframe {
+
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      border: 0;
+
+      background: #f6f3ee;
+    }
+
+
+    /*
+      Mensaje en caso de error.
+    */
+
+    #aviso {
+
+      display: none;
+
+      width: 100%;
+      box-sizing: border-box;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: #ffffff;
+
+      padding: 28px;
+
+      line-height: 1.5;
+    }
+
+
+    #aviso b {
+
+      font-size: 20px;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================================
+       MENSAJE DE ERROR
+       ========================================================= -->
+
+  <div id="aviso"></div>
+
+
+  <!-- =========================================================
+       APLICACIÓN
+       ========================================================= -->
+
+  <iframe
+    id="app"
+    title="Centro de Operaciones"
+    allow="fullscreen">
+  </iframe>
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
+
+  <script>
+
+    /*
+    ============================================================
+    URL DE TU WEB APP DE GOOGLE APPS SCRIPT
+    ============================================================
+    */
+
+    var URL_APP =
+      "https://script.google.com/macros/s/AKfycbylguEJ-dk1eO8J9FLl67YHmdDQmvJDgB6qsjUzcfKAGNv6lHHXUSTuOha0_Unf9ySeZQ/exec?mobile=1";
+
+
+    /*
+    ============================================================
+    CARGAR LA APLICACIÓN
+    ============================================================
+    */
+
+    (function () {
+
+      var frame =
+        document.getElementById("app");
+
+      var aviso =
+        document.getElementById("aviso");
+
+
+      /*
+      ------------------------------------------------------------
+      Verificar que la URL esté configurada
+      ------------------------------------------------------------
+      */
+
+      if (
+        !/^https:\/\/script\.google\.com\/.+\/exec/.test(URL_APP)
+      ) {
+
+        frame.style.display = "none";
+
+        aviso.style.display = "block";
+
+        aviso.innerHTML =
+          "<b>Falta configurar la URL.</b><br><br>" +
+
+          "Abrí este archivo y verificá la variable " +
+
+          "<b>URL_APP</b> con la URL de tu Web App " +
+
+          "de Google Apps Script.";
+
+        return;
+      }
+
+
+      /*
+      ------------------------------------------------------------
+      Cargar Centro de Operaciones
+      ------------------------------------------------------------
+      */
+
+      frame.src = URL_APP;
+
+    })();
+
+  </script>
+
+
+</body>
+
+</html>
